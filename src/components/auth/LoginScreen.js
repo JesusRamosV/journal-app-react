@@ -12,6 +12,7 @@ export const LoginScreen = () => {
           placeholder="Email" 
           name="email" 
           className="auth__input"
+          autoComplete="off"
         />
 
         <input 
@@ -19,6 +20,7 @@ export const LoginScreen = () => {
           placeholder="Password" 
           name="password" 
           className="auth__input"
+          autoComplete="off"
         />
 
         <button 
