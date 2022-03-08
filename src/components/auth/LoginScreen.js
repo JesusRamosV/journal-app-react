@@ -1,88 +1,86 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { loginstartEmailPassword, startGoogleLogin } from "../../actions/auth";
+import {
+  loginstartEmailPassword,
+  startGoogleLogin,
+} from "../../actions/auth";
 import { useForm } from "../../custom-hooks/useForm";
 
 export const LoginScreen = () => {
-
   const dispatch = useDispatch();
- 
-  const [formValues, handleInputChange] = useForm({
-    email:'nando@gmail.com',
-    password:'123456'
-  })
 
-  const {email, password} = formValues;
+  const {loading} = useSelector(state => state.ui);
+ console.log(loading);
+  const [formValues, handleInputChange] = useForm({
+    email: "nando@gmail.com",
+    password: "123456",
+  });
+
+  const { email, password } = formValues;
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    dispatch( loginstartEmailPassword(email,password));
-  }
+    
+    dispatch(loginstartEmailPassword(email, password));
+    
+  };
 
   const handleGoogleLogin = () => {
-    dispatch(startGoogleLogin())
-  }
+    dispatch(startGoogleLogin());
+  };
 
   return (
     <>
       <h3 className="auth__title">Login</h3>
 
       <form onSubmit={handleLogin}>
-        <input 
-          type="text" 
-          placeholder="Email" 
-          name="email" 
+        <input
+          type="text"
+          placeholder="Email"
+          name="email"
           className="auth__input"
           autoComplete="off"
           value={email}
-          onChange={ handleInputChange }                       
+          onChange={handleInputChange}
         />
 
-        <input 
-          type="password" 
-          placeholder="Password" 
-          name="password" 
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
           className="auth__input"
           autoComplete="off"
           value={password}
-          onChange={ handleInputChange }
+          onChange={handleInputChange}
         />
 
-        <button 
+        <button
           type="submit"
-          className="btn btn-primary btn-block" 
-          //disabled= {true}
+          className="btn btn-primary btn-block"
+          disabled= {loading}
         >
           Login
         </button>
 
-
         <div className="auth__social-networks">
-            <p>Login with social networks</p>
+          <p>Login with social networks</p>
 
-            <div 
-              onClick={handleGoogleLogin}
-              className="google-btn"
-            >
+          <div onClick={handleGoogleLogin} className="google-btn">
             <div className="google-icon-wrapper">
-                <img
+              <img
                 className="google-icon"
                 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                 alt="google button"
-                />
+              />
             </div>
             <p className="btn-text">
-                <b>Sign in with google</b>
+              <b>Sign in with google</b>
             </p>
-            </div>
+          </div>
         </div>
-        <Link 
-          to="/auth/register"
-          className="link"
-        >
-            Create new account
+        <Link to="/auth/register" className="link">
+          Create new account
         </Link>
       </form>
     </>
