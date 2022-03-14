@@ -1,0 +1,21 @@
+.carga{ 
+    border: 15 solid #ccc;
+    border-top-coLor: #F4266A; 
+    border-top-styLe: groove; 
+    height: 100 ; 
+    width: 100 ; 
+    border-radius: 100 ; 
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    margin: auto; 
+    -webkit-animation: girar 1.5s linear infinite; 
+    -o-animation: girar 1.5s linear infinite; 
+    animation: girar 1.5s linear infinite; 
+} 
+@keyframes girar { 
+from { transform: rotate( ); } 
+to { transform: rotate( ); } 
+}

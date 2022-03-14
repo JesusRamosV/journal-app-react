@@ -10,8 +10,10 @@ import { useForm } from "../../custom-hooks/useForm";
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const {loading} = useSelector(state => state.ui);
- console.log(loading);
+
+  const {loading, msgError} = useSelector(state => state.ui);
+
+
   const [formValues, handleInputChange] = useForm({
     email: "nando@gmail.com",
     password: "123456",
@@ -33,6 +35,15 @@ export const LoginScreen = () => {
   return (
     <>
       <h3 className="auth__title">Login</h3>
+
+      {
+        msgError &&
+        (
+          <div className='auth__alert-error'>
+            {msgError}
+          </div>
+        )
+      }
 
       <form onSubmit={handleLogin}>
         <input

@@ -17,15 +17,14 @@ export const loginstartEmailPassword = (email, password) => {
               login(user.uid, user.displayName)
             );
   
-            dispatch(finishLoading());
   
           })
           .catch( ({message}) => {
             message = 'Usuario o contraseña incorrectos';
             console.log(message);
-            dispatch(finishLoading());
+            dispatch(finishLoading(message));
           })
-      }, 3500);
+      }, 1500);
   };
 };
 
@@ -66,3 +65,15 @@ export const login = (uid, displayName) => ({
     displayName,
   },
 });
+
+export const startLogout = () => {
+  return async(dispatch) => {
+    await firebase.auth().signOut();
+
+    dispatch(logout());
+  }
+}
+
+export const logout = () => ({
+  type: types.logout
+})
