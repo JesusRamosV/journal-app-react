@@ -1,10 +1,11 @@
 import React from 'react';
 import validator from 'validator';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../custom-hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../actions/ui';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
+import Swal from 'sweetalert2';
 
 export const RegisterScreen = () => {
 
@@ -26,19 +27,35 @@ export const RegisterScreen = () => {
       e.preventDefault();
       
       if(isFormValid()){
-        dispatch(startRegisterWithEmailPasswordName(email, password, name))
+        dispatch(startRegisterWithEmailPasswordName(email, password, name));
+        <Navigate to="/" />
       }
     }
 
     const isFormValid = () => {
       if( name.trim().length === 0){
         dispatch(setError('Name is required'));
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Name is required'
+        })
         return false;
       }else if ( !validator.isEmail(email) ){
         dispatch(setError('Email is not valid'));
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Email is not valid'
+        })
         return false;
       }else if (password !== password2 || password.length < 6){
         dispatch(setError('Password should be at least 6 characters and match each other'));
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Password should be at least 6 characters and match each other'
+        })
         return false;
       }else (
         dispatch(removeError())
@@ -49,15 +66,7 @@ export const RegisterScreen = () => {
     return (
         <>
       <h3 className="auth__title">Register</h3>
-
-      {
-        msgError &&
-        (
-          <div className='auth__alert-error'>
-            {msgError}
-          </div>
-        )
-      }
+      
       <form onSubmit={handleRegister}>
 
       <input 

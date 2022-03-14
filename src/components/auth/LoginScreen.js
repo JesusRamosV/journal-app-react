@@ -36,15 +36,6 @@ export const LoginScreen = () => {
     <>
       <h3 className="auth__title">Login</h3>
 
-      {
-        msgError &&
-        (
-          <div className='auth__alert-error'>
-            {msgError}
-          </div>
-        )
-      }
-
       <form onSubmit={handleLogin}>
         <input
           type="text"
