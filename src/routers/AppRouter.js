@@ -35,30 +35,29 @@ export const AppRouter = () => {
   }, [dispatch, setChegking]);
 
   if (chegking) {
-    return <h1>Espere...</h1>;
+    return <h1>Wait...</h1>;
   }
 
   return (
     <Router>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <PrivateRoute>
-                            <JournalScreen />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/*"
-                    element={
-                        <PublicRoute>
-                            <AuthRouter />
-                        </PublicRoute>
-                    }
-                />
-            </Routes>
-        </Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <JournalScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <PublicRoute>
+              <AuthRouter />
+            </PublicRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 };
-
