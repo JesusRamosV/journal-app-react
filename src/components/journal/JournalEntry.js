@@ -8,7 +8,7 @@ export const JournalEntry = () => {
           className='journal__entry-picture'
           style={{
             backgroundSize: 'cover',
-            backgroundImage: 'url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80)'
+            backgroundImage: 'url(https://i.pinimg.com/originals/1e/5d/0f/1e5d0fe61f9d39dd35a3ba56dbb3eebe.jpg)'
           }}
         >
         </div>
