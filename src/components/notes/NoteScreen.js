@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeNote } from '../../actions/notes'
+import Swal from 'sweetalert2'
+import { activeNote, startDeleting } from '../../actions/notes'
 import { useForm } from '../../custom-hooks/useForm'
 import { NotesAppBar } from './NotesAppBar'
 
@@ -27,10 +28,30 @@ export const NoteScreen = () => {
 
   }, [formValues, dispatch])
   
-  
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(startDeleting(activeId.current));
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    
+  }
   
   return (
-    <div className='notes__main-content'>
+    <div className='notes__main-content animate__animated animate__backInLeft animate__faster'>
         
         <NotesAppBar />
 
@@ -55,7 +76,7 @@ export const NoteScreen = () => {
               {
                 (note.url) && (
                   <img
-                  src='https://archzine.es/wp-content/uploads/2019/07/5-estrellas-cielo-monta%C3%B1a-rocas-playa-rocas-color-morado-agua-fondos-de-pantalla-del-mar-fotos-para-descargar-paisajes-bonitos.jpeg'
+                  src={note.url}
                   alt='imagen'
                 />
                 )
@@ -63,6 +84,12 @@ export const NoteScreen = () => {
               
             </div>
         </div>
+        <button 
+          className='btn btn-danger'
+          onClick={handleDelete}
+        >
+              Delete
+        </button>
     </div>
   )
 }

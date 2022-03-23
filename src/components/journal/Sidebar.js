@@ -19,7 +19,7 @@ export const Sidebar = () => {
     }
 
     return (
-        <aside className='journal__sidebar'>
+        <aside className='journal__sidebar animate__animated animate__backInDown animate__faster'>
             <div className='journal__sidebar-navbar'>
                 <h3 className='mt-5'>
                     <i className='fa-regular fa-moon'></i>

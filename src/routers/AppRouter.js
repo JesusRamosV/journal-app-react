@@ -6,6 +6,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+
 import { firebase } from "../firebase/firebase-config";
 import { JournalScreen } from "../components/journal/JournalScreen";
 import { AuthRouter } from "./AuthRouter";
@@ -14,6 +15,7 @@ import { login } from "../actions/auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { startLoadingNotes } from "../actions/notes";
+import Swal from "sweetalert2";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ export const AppRouter = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async(user) => {
       //Si el objeto user tiene algo entonces pregunta si existe el uid
+  
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         
@@ -32,11 +35,12 @@ export const AppRouter = () => {
       } 
 
       setChegking(false);
+     
     });
   }, [dispatch, setChegking]);
 
   if (chegking) {
-    return <h1>Wait...</h1>;
+    return <h1>Wait...</h1> 
   }
 
   return (
