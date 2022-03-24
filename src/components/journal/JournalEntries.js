@@ -6,12 +6,19 @@ export const JournalEntries = () => {
   
     const {notes} = useSelector(state => state.notes)
     //console.log(...notes);
+
+
     const entries = notes;
 
+    const entriesOrder = [...entries.sort( (prev, curr) =>   curr.date - prev.date)];
+    // entries.forEach( element => {
+    //     console.log(element.date);
+    // });
+    //console.log(entriesOrder);
     return (
     <div className='journal__entries'>
         {
-            entries.map( note => (
+            entriesOrder.map( note => (
                 
                 <JournalEntry key={note.id} note={note}/>
             ))
