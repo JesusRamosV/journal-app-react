@@ -2,7 +2,7 @@ import React from 'react';
 import validator from 'validator';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../custom-hooks/useForm';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { removeError, setError } from '../../actions/ui';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ export const RegisterScreen = () => {
     const dispatch = useDispatch();
 
     // Esto se hace para tomar el estado del store
-    const {msgError} = useSelector( state => state.ui)
+   // const {msgError} = useSelector( state => state.ui)
 
     const [formValues, handleInputChange] = useForm({
       name:'Jesus',

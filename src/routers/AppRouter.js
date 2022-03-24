@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
-  Navigate,
-  Redirect,
   Route,
   Routes,
 } from "react-router-dom";
@@ -15,7 +13,7 @@ import { login } from "../actions/auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { startLoadingNotes } from "../actions/notes";
-import Swal from "sweetalert2";
+
 
 export const AppRouter = () => {
   const dispatch = useDispatch();

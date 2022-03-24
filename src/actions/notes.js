@@ -4,7 +4,6 @@ import { types } from "../types/types";
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNotes";
 import { fileUpload } from "../helpers/fileUpload";
-import { type } from "@testing-library/user-event/dist/type";
 
 //
 
