@@ -23,7 +23,7 @@ export const Sidebar = () => {
             <div className='journal__sidebar-navbar'>
                 <h3 className='mt-5'>
                     <i className='fa-regular fa-moon'></i>
-                    <span>{name.toUpperCase()}</span>
+                    <span>{name}</span>
                 </h3>
 
                 <button 

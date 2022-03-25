@@ -42,6 +42,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         dispatch(
           login(user.uid, user.displayName)
         );
+       // <Navigate to="/" />
       })
       .catch( ({message}) => {
         console.log(message);
